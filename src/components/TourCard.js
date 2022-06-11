@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import image from '.././deadmau5.jpg';
 import { AccessTime } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material';
 
@@ -32,14 +31,14 @@ const theme = createTheme({
   }
 })
 
-const TourCard = () => {
+const TourCard = ({tour}) => {
   return (
     <Grid item xs={3}>
       <ThemeProvider theme={theme}>
         <Paper elevation={3} square>
-          <img src={image} className={'img'}/>
+          <img src={tour.image} className={'img'}/>
           <Box paddingX={1}>
-            <Typography variant="subtitle1" component="h2" >リヴァプールFCへようこそ</Typography>
+            <Typography variant="subtitle1" component="h2" >{tour.name}</Typography>
           </Box>
           <Box
             sx={{
@@ -49,7 +48,7 @@ const TourCard = () => {
             paddingX={1}
           >
             <AccessTime sx={{ width: 12.5 }}/>
-            <Typography variant='body2' component='p' marginLeft={0.5}>Liverpool</Typography>
+            <Typography variant='body2' component='p' marginLeft={0.5}>{tour.duration} hours</Typography>
           </Box>
           <Box
             sx={{
@@ -59,12 +58,12 @@ const TourCard = () => {
             marginTop={3}
             paddingX={1}
           >
-              <Rating size={'small'} name="read-only" value={4.5} readOnly precision={0.5}/>
+              <Rating size={'small'} name="read-only" value={tour.rating} readOnly precision={0.5}/>
               <Typography variant='body2' component='p' marginLeft={0.5}>4.5</Typography>
-              <Typography variant='body3' component='p' marginLeft={1.5}>(655 reviews)</Typography>
+              <Typography variant='body3' component='p' marginLeft={1.5}>({tour.numberOfReviews} reviews)</Typography>
           </Box>
           <Box paddingX={1}>
-          <Typography variant='h6' component='h3' marginTop={0}>From 38500円</Typography>
+          <Typography variant='h6' component='h3' marginTop={0}>From ${tour.price}</Typography>
           </Box>
         </Paper>
       </ThemeProvider>
